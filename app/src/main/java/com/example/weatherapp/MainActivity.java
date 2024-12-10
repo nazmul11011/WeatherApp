@@ -20,15 +20,7 @@ import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tvDisplayName;
-    private TextView tvLocation;
-    private TextView tvTemp;
-    private TextView tvCloudCover;
-    private TextView tvFeelsLike;
-    private TextView tvWindSpeed;
-    private TextView tvRelativeHumidity;
-    private TextView tvDewpoint;
-    private TextView tvPressure;
+    private TextView tvDisplayName,tvLocation,tvTemp,tvCloudCover,tvFeelsLike,tvWindSpeed,tvRelativeHumidity,tvDewPoint,tvPressure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         tvWindSpeed = findViewById(R.id.tv_windspeed);
         tvRelativeHumidity = findViewById(R.id.tv_relativehumidity);
         tvLocation = findViewById(R.id.tv_corelocation);
-        tvDewpoint = findViewById(R.id.tv_dewpoint);
+        tvDewPoint = findViewById(R.id.tv_dewpoint);
         tvPressure = findViewById(R.id.tv_pressure);
 
         String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3alertsHeadlines;v3-wx-observations-current;v3-links?par=samsung_widget&geocode=24.926%2C91.835&language=en-us&units=m&format=json&apiKey=793db2b6128c4bc2bdb2b6128c0bc230";
@@ -83,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     tvRelativeHumidity.setText(humidity + "%");
 
                     int dewpoint = weatherResponse.current.temperatureDewPoint;
-                    tvDewpoint.setText(dewpoint + "°");
+                    tvDewPoint.setText(dewpoint + "°");
 
                     double pressure = weatherResponse.current.pressureAltimeter;
                     tvPressure.setText(pressure + " mb");
