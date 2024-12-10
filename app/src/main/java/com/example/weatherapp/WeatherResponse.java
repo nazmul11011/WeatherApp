@@ -9,6 +9,17 @@ public class WeatherResponse {
     @SerializedName("v3-location-point")
     public LocationPoint locationPoint;
 
+    @SerializedName("v2fcstdaily7s")
+    public Fcstdaily7s fcstdaily7s;
+
+    public static class Fcstdaily7s {
+        @SerializedName("forecasts")
+        public Forecasts forecasts;
+    }
+    public static class Forecasts {
+        @SerializedName("narrative")
+        public String narrative;
+    }
     public static class LocationPoint {
         @SerializedName("location")
         public Location location;

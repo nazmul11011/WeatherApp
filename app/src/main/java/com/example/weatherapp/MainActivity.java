@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
 
-    private TextView tvDisplayName, tvLocation, tvTemp, tvCloudCover, tvFeelsLike, tvWindSpeed, tvRelativeHumidity, tvDewPoint, tvPressure;
+    private TextView tvDisplayName, tvLocation, tvTemp, tvCloudCover, tvFeelsLike, tvWindSpeed, tvRelativeHumidity, tvDewPoint, tvPressure,tvNarrative;
     private LocationManager locationManager;
 
     @Override
@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         tvLocation = findViewById(R.id.tv_corelocation);
         tvDewPoint = findViewById(R.id.tv_dewpoint);
         tvPressure = findViewById(R.id.tv_pressure);
+
+        tvNarrative = findViewById(R.id.tv_narrative);
 
         checkLocationPermissions();
     }
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void fetchWeatherData(Location location) {
         String apiKey = "793db2b6128c4bc2bdb2b6128c0bc230"; // Replace with your actual API key
-        String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3alertsHeadlines;v3-wx-observations-current;v3-links" +
+        String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3-wx-observations-current;v3-links" +
                 "?par=samsung_widget&geocode=" + location.getLatitude() + "%2C" + location.getLongitude() +
                 "&language=en-us&units=m&format=json&apiKey=" + apiKey;
 
@@ -108,11 +110,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 tvRelativeHumidity.setText(weatherResponse.current.relativeHumidity + "%");
                 tvDewPoint.setText(weatherResponse.current.temperatureDewPoint + "°");
                 tvPressure.setText(weatherResponse.current.pressureAltimeter + " mb");
+                tvNarrative.setText(weatherResponse.fcstdaily7s.forecasts.narrative);
             } else {
                 tvTemp.setText("Error: Invalid response");
             }
         } catch (Exception e) {
-            tvTemp.setText("Error parsing response");
+            tvNarrative.setText("Error parsing response");
         }
     }
 
