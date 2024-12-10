@@ -31,7 +31,7 @@
                 android:layout_width="174dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text=" ... "
+                android:text="Tuker Bazar"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -40,7 +40,7 @@
                 android:layout_width="174dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text=".."
+                android:text="Sylhet"
                 android:textColor="@color/paragraphTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -151,11 +151,11 @@
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    app:lottie_rawRes="@raw/humidity"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center_horizontal"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    android:layout_gravity="center_horizontal"/>
+                    app:lottie_rawRes="@raw/humidity" />
                 <TextView
                     android:id="@+id/tv_relativehumidity"
                     android:layout_width="wrap_content"
