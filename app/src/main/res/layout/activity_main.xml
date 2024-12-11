@@ -3,64 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#000313"
-    android:padding="32dp"
+    android:background="@color/background"
+    android:paddingHorizontal="28dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="36dp">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <TextView
+                android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="20dp"
+                android:fontFamily="@font/poppinsregular"
+                android:gravity="start"
+                android:text="Tuker Bazar"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tv_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:fontFamily="@font/poppinsRegular"
-                    android:gravity="start"
-                    android:text="Tuker Bazar"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_corelocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:gravity="start"
+                android:text="Sylhet"
+                android:textColor="@color/paragraphTextSecondary"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_corelocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppinsRegular"
-                    android:gravity="start"
-                    android:text="Sylhet"
-                    android:textColor="@color/paragraphTextSecondary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="4dp"
-                android:layout_toEndOf="@id/linearLayout"
-                android:src="@raw/location" />
-        </RelativeLayout>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/linearLayout"
+            android:src="@raw/location" />
+    </RelativeLayout>
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_below="@+id/relativeLayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/currentCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -84,16 +92,16 @@
                             android:id="@+id/tv_cloudCover"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Condition"
                             android:textColor="@color/paragraphTextSecondary"
-                            android:textSize="16sp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/tv_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Temp"
                             android:textColor="@color/white"
                             android:textSize="40sp" />
@@ -102,10 +110,10 @@
                             android:id="@+id/tv_feelslike"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Feels Like 28C"
                             android:textColor="@color/paragraphTextSecondary"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <com.airbnb.lottie.LottieAnimationView
@@ -138,9 +146,8 @@
 
                         <ImageView
                             android:layout_width="32dp"
-                            android:layout_height="26dp"
+                            android:layout_height="32dp"
                             android:layout_gravity="center_horizontal"
-                            android:paddingBottom="2dp"
                             android:src="@drawable/wind"
                             app:tint="@color/paragraphTextSecondary" />
 
@@ -149,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="KM/h"
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -157,7 +164,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Wind"
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -166,17 +173,17 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <com.airbnb.lottie.LottieAnimationView
+                        <ImageView
                             android:layout_width="32dp"
-                            android:layout_height="34dp"
+                            android:layout_height="32dp"
+                            android:padding="3dp"
                             android:layout_gravity="center_horizontal"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/humidity" />
+                            android:src="@drawable/humidity"
+                            app:tint="@color/paragraphTextSecondary" />
 
                         <TextView
                             android:id="@+id/tv_relativehumidity"
@@ -188,9 +195,10 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:gravity="bottom"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Humidity"
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -206,8 +214,9 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
+                            android:padding="3dp"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/ic_cloud"
+                            android:src="@drawable/dewpoint"
                             app:tint="@color/paragraphTextSecondary" />
 
                         <TextView
@@ -215,7 +224,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="10KM/h"
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -223,7 +232,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Dewpoint"
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -239,8 +248,9 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
+                            android:padding="3dp"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/ic_cloud"
+                            android:src="@drawable/pressure"
                             app:tint="@color/paragraphTextSecondary" />
 
                         <TextView
@@ -248,7 +258,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="."
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -256,7 +266,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="Pressure"
                             android:textColor="@color/paragraphTextSecondary" />
 
@@ -268,7 +278,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/hourForcastCardView"
+            android:id="@+id/hourForecastCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/currentCardView"
@@ -287,7 +297,7 @@
                     android:id="@+id/tv_narrative"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppinsRegular"
+                    android:fontFamily="@font/poppinsregular"
                     android:text="Shower"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
@@ -313,7 +323,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="12 AM"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -330,7 +340,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="20°"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -353,7 +363,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
-                                android:fontFamily="@font/poppinsRegular"
+                                android:fontFamily="@font/poppinsregular"
                                 android:gravity="end"
                                 android:text="2%"
                                 android:textColor="@color/white"
@@ -371,7 +381,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="12 AM"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -388,7 +398,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="20°"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -411,7 +421,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
-                                android:fontFamily="@font/poppinsRegular"
+                                android:fontFamily="@font/poppinsregular"
                                 android:gravity="end"
                                 android:text="2%"
                                 android:textColor="@color/white"
@@ -429,7 +439,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="12 AM"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -446,7 +456,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="20°"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -469,7 +479,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
-                                android:fontFamily="@font/poppinsRegular"
+                                android:fontFamily="@font/poppinsregular"
                                 android:gravity="end"
                                 android:text="2%"
                                 android:textColor="@color/white"
@@ -487,7 +497,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="12 AM"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -504,7 +514,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/poppinsRegular"
+                            android:fontFamily="@font/poppinsregular"
                             android:text="20°"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -527,7 +537,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
-                                android:fontFamily="@font/poppinsRegular"
+                                android:fontFamily="@font/poppinsregular"
                                 android:gravity="end"
                                 android:text="2%"
                                 android:textColor="@color/white"
@@ -544,9 +554,10 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/hourForcastCardView"
+            android:layout_below="@+id/hourForecastCardView"
             android:layout_marginTop="20dp"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            android:layout_marginBottom="54dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -564,12 +575,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="17dp"
+                        android:layout_width="10dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:fontFamily="@font/poppinsRegular"
-                        android:text="Yesterday"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
@@ -591,6 +602,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_forecasthigh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="1dp"
@@ -605,6 +617,362 @@
                             android:textColor="@color/white" />
 
                         <TextView
+                            android:id="@+id/tv_forecastlow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_forecastday2"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="DuplicateIds" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_forecasthigh2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="/"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv_forecastlow2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_forecastday3"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_forecasthigh3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="/"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv_forecastlow3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_forecastday4"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_forecasthigh4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="/"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv_forecastlow4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_forecastday5"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_forecasthigh5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="/"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv_forecastlow5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_forecastday6"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_forecasthigh6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="/"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv_forecastlow6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_forecastday7"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="Today"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_forecasthigh7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="26°"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="1dp"
+                            android:text="/"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv_forecastlow7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="1dp"
@@ -614,6 +982,9 @@
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
     </ScrollView>
+
+
 </RelativeLayout>
 

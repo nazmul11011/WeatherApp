@@ -3,10 +3,15 @@ package com.example.weatherapp;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +32,28 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
 
-    private TextView tvDisplayName, tvLocation, tvTemp, tvCloudCover, tvFeelsLike, tvWindSpeed, tvRelativeHumidity, tvDewPoint, tvPressure,tvNarrative;
+    private TextView tvDisplayName, tvLocation, tvTemp, tvCloudCover, tvFeelsLike, tvWindSpeed, tvRelativeHumidity, tvDewPoint, tvPressure,tvNarrative,tvForecastHigh,tvForecastLow,tvForecastDay2,tvForecastDay3,tvForecastDay4,tvForecastDay5,tvForecastDay6,tvForecastDay7;
+    private TextView tvForecastHigh2,tvForecastHigh3,tvForecastHigh4,tvForecastHigh5,tvForecastHigh6,tvForecastHigh7,tvForecastLow2,tvForecastLow3,tvForecastLow4,tvForecastLow5,tvForecastLow6,tvForecastLow7;
     private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GradientDrawable gradient = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[] { Color.parseColor("#131122"), Color.parseColor("#040622") }
+        );
+
+        RelativeLayout layout = findViewById(R.id.main);
+        layout.setBackground(gradient);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getWindow().setDecorFitsSystemWindows(false);
+        }
+        getWindow().setStatusBarColor(getColor(R.color.background));
+        getWindow().setNavigationBarColor(getColor(R.color.background));
 
         tvDisplayName = findViewById(R.id.tv_location);
         tvTemp = findViewById(R.id.tv_temp);
@@ -46,6 +66,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         tvPressure = findViewById(R.id.tv_pressure);
 
         tvNarrative = findViewById(R.id.tv_narrative);
+        tvForecastHigh = findViewById(R.id.tv_forecasthigh);
+        tvForecastHigh2 = findViewById(R.id.tv_forecasthigh2);
+        tvForecastHigh3 = findViewById(R.id.tv_forecasthigh3);
+        tvForecastHigh4 = findViewById(R.id.tv_forecasthigh4);
+        tvForecastHigh5 = findViewById(R.id.tv_forecasthigh5);
+        tvForecastHigh6 = findViewById(R.id.tv_forecasthigh6);
+        tvForecastHigh7 = findViewById(R.id.tv_forecasthigh7);
+        tvForecastLow = findViewById(R.id.tv_forecastlow);
+        tvForecastLow2 = findViewById(R.id.tv_forecastlow2);
+        tvForecastLow3 = findViewById(R.id.tv_forecastlow3);
+        tvForecastLow4 = findViewById(R.id.tv_forecastlow4);
+        tvForecastLow5 = findViewById(R.id.tv_forecastlow5);
+        tvForecastLow6 = findViewById(R.id.tv_forecastlow6);
+        tvForecastLow7 = findViewById(R.id.tv_forecastlow7);
+        tvForecastDay2 = findViewById(R.id.tv_forecastday2);
+        tvForecastDay3 = findViewById(R.id.tv_forecastday3);
+        tvForecastDay4 = findViewById(R.id.tv_forecastday4);
+        tvForecastDay5 = findViewById(R.id.tv_forecastday5);
+        tvForecastDay6 = findViewById(R.id.tv_forecastday6);
+        tvForecastDay7 = findViewById(R.id.tv_forecastday7);
 
         checkLocationPermissions();
     }
@@ -73,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void fetchWeatherData(Location location) {
         String apiKey = "793db2b6128c4bc2bdb2b6128c0bc230"; // Replace with your actual API key
-        String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3-wx-observations-current;v3-links" +
+        String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3-wx-observations-current;v2fcstdaily7s;v3-links" +
                 "?par=samsung_widget&geocode=" + location.getLatitude() + "%2C" + location.getLongitude() +
                 "&language=en-us&units=m&format=json&apiKey=" + apiKey;
 
@@ -110,7 +150,57 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 tvRelativeHumidity.setText(weatherResponse.current.relativeHumidity + "%");
                 tvDewPoint.setText(weatherResponse.current.temperatureDewPoint + "°");
                 tvPressure.setText(weatherResponse.current.pressureAltimeter + " mb");
-                tvNarrative.setText(weatherResponse.fcstdaily7s.forecasts.narrative);
+                tvNarrative.setText(weatherResponse.fcstdaily7s.forecasts.get(0).narrative);
+
+                if (weatherResponse.fcstdaily7s.forecasts.get(0).num == 1) {
+                    String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(0).max_temp);
+                    String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(0).min_temp);
+                    tvForecastHigh.setText(maxTemp+"°");
+                    tvForecastLow.setText(minTemp+"°");
+                }
+                if (weatherResponse.fcstdaily7s.forecasts.get(1).num == 2) {
+                    String maxTemp2 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(1).max_temp);
+                    String minTemp2 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(1).min_temp);
+                    String day2 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(1).day);
+                    tvForecastHigh2.setText(maxTemp2+"°");
+                    tvForecastLow2.setText(minTemp2+"°");
+                    tvForecastDay2.setText(day2);
+                } if (weatherResponse.fcstdaily7s.forecasts.get(2).num == 3) {
+                    String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(2).max_temp);
+                    String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(2).min_temp);
+                    String day3 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(2).day);
+                    tvForecastHigh3.setText(maxTemp+"°");
+                    tvForecastLow3.setText(minTemp+"°");
+                    tvForecastDay3.setText(day3);
+                } if (weatherResponse.fcstdaily7s.forecasts.get(3).num == 4) {
+                    String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(3).max_temp);
+                    String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(3).min_temp);
+                    String day4 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(3).day);
+                    tvForecastHigh4.setText(maxTemp+"°");
+                    tvForecastLow4.setText(minTemp+"°");
+                    tvForecastDay4.setText(day4);
+                } if (weatherResponse.fcstdaily7s.forecasts.get(4).num == 5) {
+                    String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(4).max_temp);
+                    String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(4).min_temp);
+                    String day5 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(4).day);
+                    tvForecastHigh5.setText(maxTemp+"°");
+                    tvForecastLow5.setText(minTemp+"°");
+                    tvForecastDay5.setText(day5);
+                } if (weatherResponse.fcstdaily7s.forecasts.get(5).num == 6) {
+                    String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(5).max_temp);
+                    String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(5).min_temp);
+                    String day6 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(5).day);
+                    tvForecastHigh6.setText(maxTemp+"°");
+                    tvForecastLow6.setText(minTemp+"°");
+                    tvForecastDay6.setText(day6);
+                } if (weatherResponse.fcstdaily7s.forecasts.get(6).num == 7) {
+                    String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(6).max_temp);
+                    String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(6).min_temp);
+                    String day7 = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(6).day);
+                    tvForecastHigh7.setText(maxTemp+"°");
+                    tvForecastLow7.setText(minTemp+"°");
+                    tvForecastDay7.setText(day7);
+                }
             } else {
                 tvTemp.setText("Error: Invalid response");
             }

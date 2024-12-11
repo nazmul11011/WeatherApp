@@ -2,6 +2,8 @@ package com.example.weatherapp;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class WeatherResponse {
     @SerializedName("v3-wx-observations-current")
     public Current current;
@@ -14,11 +16,19 @@ public class WeatherResponse {
 
     public static class Fcstdaily7s {
         @SerializedName("forecasts")
-        public Forecasts forecasts;
+        public List<Forecast> forecasts;
     }
-    public static class Forecasts {
+    public static class Forecast {
         @SerializedName("narrative")
         public String narrative;
+        @SerializedName("dow")
+        public String day;
+        @SerializedName("num")
+        public int num;
+        @SerializedName("min_temp")
+        public int min_temp;
+        @SerializedName("max_temp")
+        public int max_temp;
     }
     public static class LocationPoint {
         @SerializedName("location")
@@ -44,7 +54,7 @@ public class WeatherResponse {
         public String cloudCoverPhrase;
 
         @SerializedName("temperatureFeelsLike")
-        public double temperatureFeelsLike;
+        public int temperatureFeelsLike;
 
         @SerializedName("windSpeed")
         public int windSpeed;
