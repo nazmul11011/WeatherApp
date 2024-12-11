@@ -117,13 +117,14 @@
                     </LinearLayout>
 
                     <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottieAnimationView"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/cloudy" />
+                        app:lottie_rawRes="@raw/clearnight" />
 
                 </RelativeLayout>
 
@@ -225,7 +226,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/poppinsregular"
-                            android:text="10KM/h"
+                            android:text="KM/h"
                             android:textColor="@color/paragraphTextSecondary" />
 
                         <TextView
@@ -259,7 +260,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/poppinsregular"
-                            android:text="."
+                            android:text="mb"
                             android:textColor="@color/paragraphTextSecondary" />
 
                         <TextView
@@ -337,6 +338,7 @@
                             app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/tv_hourly1sttemp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -360,6 +362,7 @@
                                 app:tint="@color/white" />
 
                             <TextView
+                                android:id="@+id/tv_hourlyperc1rain"
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
@@ -395,6 +398,7 @@
                             app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/tv_hourly2ndtemp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -418,6 +422,7 @@
                                 app:tint="@color/white" />
 
                             <TextView
+                                android:id="@+id/tv_hourlyperc2rain"
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
@@ -453,6 +458,7 @@
                             app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/tv_hourly3rdtemp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -476,6 +482,7 @@
                                 app:tint="@color/white" />
 
                             <TextView
+                                android:id="@+id/tv_hourlyperc3rain"
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
@@ -511,6 +518,7 @@
                             app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/tv_hourly4thtemp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -534,6 +542,7 @@
                                 app:tint="@color/white" />
 
                             <TextView
+                                android:id="@+id/tv_hourlyperc4rain"
                                 android:layout_width="wrap_content"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="6dp"
@@ -984,7 +993,5 @@
         </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </ScrollView>
-
-
 </RelativeLayout>
 

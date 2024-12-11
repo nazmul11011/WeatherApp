@@ -14,6 +14,20 @@ public class WeatherResponse {
     @SerializedName("v2fcstdaily7s")
     public Fcstdaily7s fcstdaily7s;
 
+    @SerializedName("v3-wx-forecast-hourly-1day")
+    public Hourly1day hourly1day;
+
+    public static class Hourly1day {
+        @SerializedName("iconCode")
+        public List<Integer> iconCode;
+        @SerializedName("precipChance")
+        public List<Integer> precipChance;
+        @SerializedName("temperature")
+        public List<Integer> temperature;
+        @SerializedName("validTimeLocal")
+        public List<String> validTimeLocal;
+    }
+
     public static class Fcstdaily7s {
         @SerializedName("forecasts")
         public List<Forecast> forecasts;
@@ -52,6 +66,10 @@ public class WeatherResponse {
 
         @SerializedName("cloudCoverPhrase")
         public String cloudCoverPhrase;
+        @SerializedName("dayOrNight")
+        public String dayornight;
+        @SerializedName("iconCode")
+        public int iconCode;
 
         @SerializedName("temperatureFeelsLike")
         public int temperatureFeelsLike;

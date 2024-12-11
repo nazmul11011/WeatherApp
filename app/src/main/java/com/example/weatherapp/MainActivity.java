@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,13 +29,17 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
 
     private TextView tvDisplayName, tvLocation, tvTemp, tvCloudCover, tvFeelsLike, tvWindSpeed, tvRelativeHumidity, tvDewPoint, tvPressure,tvNarrative,tvForecastHigh,tvForecastLow,tvForecastDay2,tvForecastDay3,tvForecastDay4,tvForecastDay5,tvForecastDay6,tvForecastDay7;
     private TextView tvForecastHigh2,tvForecastHigh3,tvForecastHigh4,tvForecastHigh5,tvForecastHigh6,tvForecastHigh7,tvForecastLow2,tvForecastLow3,tvForecastLow4,tvForecastLow5,tvForecastLow6,tvForecastLow7;
+    private TextView tvHourlyTemp1,tvHourlyTemp2,tvHourlyTemp3,tvHourlyTemp4,tvPerc1Rain,tvPerc2Rain,tvPerc3Rain,tvPerc4Rain;
     private LocationManager locationManager;
+    private LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +91,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         tvForecastDay5 = findViewById(R.id.tv_forecastday5);
         tvForecastDay6 = findViewById(R.id.tv_forecastday6);
         tvForecastDay7 = findViewById(R.id.tv_forecastday7);
+
+        lottieAnimationView = findViewById(R.id.lottieAnimationView);
+
+        tvHourlyTemp1 = findViewById(R.id.tv_hourly1sttemp);
+        tvHourlyTemp2 = findViewById(R.id.tv_hourly2ndtemp);
+        tvHourlyTemp3 = findViewById(R.id.tv_hourly3rdtemp);
+        tvHourlyTemp4 = findViewById(R.id.tv_hourly4thtemp);
+        tvPerc1Rain = findViewById(R.id.tv_hourlyperc1rain);
+        tvPerc2Rain = findViewById(R.id.tv_hourlyperc2rain);
+        tvPerc3Rain = findViewById(R.id.tv_hourlyperc3rain);
+        tvPerc4Rain = findViewById(R.id.tv_hourlyperc4rain);
 
         checkLocationPermissions();
     }
@@ -152,6 +168,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 tvPressure.setText(weatherResponse.current.pressureAltimeter + " mb");
                 tvNarrative.setText(weatherResponse.fcstdaily7s.forecasts.get(0).narrative);
 
+                if(Objects.equals(weatherResponse.current.dayornight, "N")){
+                    if (weatherResponse.current.iconCode == 31){
+                        lottieAnimationView.setAnimation(R.raw.clearnight);
+                    }
+                }
+
                 if (weatherResponse.fcstdaily7s.forecasts.get(0).num == 1) {
                     String maxTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(0).max_temp);
                     String minTemp = String.valueOf(weatherResponse.fcstdaily7s.forecasts.get(0).min_temp);
@@ -201,6 +223,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     tvForecastLow7.setText(minTemp+"°");
                     tvForecastDay7.setText(day7);
                 }
+
+//                tvPerc1Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(0)));
+//                tvPerc2Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(1)));
+//                tvPerc3Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(2)));
+//                tvPerc4Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(3)));
+                tvHourlyTemp1.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(0)));
+//                tvHourlyTemp2.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(1)));
+//                tvHourlyTemp3.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(2)));
+//                tvHourlyTemp4.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(3)));
+
             } else {
                 tvTemp.setText("Error: Invalid response");
             }
