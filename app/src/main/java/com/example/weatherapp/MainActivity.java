@@ -29,6 +29,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private TextView tvDisplayName, tvLocation, tvTemp, tvCloudCover, tvFeelsLike, tvWindSpeed, tvRelativeHumidity, tvDewPoint, tvPressure,tvNarrative,tvForecastHigh,tvForecastLow,tvForecastDay2,tvForecastDay3,tvForecastDay4,tvForecastDay5,tvForecastDay6,tvForecastDay7;
     private TextView tvForecastHigh2,tvForecastHigh3,tvForecastHigh4,tvForecastHigh5,tvForecastHigh6,tvForecastHigh7,tvForecastLow2,tvForecastLow3,tvForecastLow4,tvForecastLow5,tvForecastLow6,tvForecastLow7;
-    private TextView tvHourlyTemp1,tvHourlyTemp2,tvHourlyTemp3,tvHourlyTemp4,tvPerc1Rain,tvPerc2Rain,tvPerc3Rain,tvPerc4Rain;
+    private TextView tvHourlyTemp1,tvHourlyTemp2,tvHourlyTemp3,tvHourlyTemp4,tvPerc1Rain,tvPerc2Rain,tvPerc3Rain,tvPerc4Rain,tvTime1,tvTime2,tvTime3,tvTime4;
     private LocationManager locationManager;
     private LottieAnimationView lottieAnimationView;
 
@@ -94,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         lottieAnimationView = findViewById(R.id.lottieAnimationView);
 
+        tvTime1 = findViewById(R.id.tv_hourlytime1);
+        tvTime2 = findViewById(R.id.tv_hourlytime2);
+        tvTime3 = findViewById(R.id.tv_hourlytime3);
+        tvTime4 = findViewById(R.id.tv_hourlytime4);
         tvHourlyTemp1 = findViewById(R.id.tv_hourly1sttemp);
         tvHourlyTemp2 = findViewById(R.id.tv_hourly2ndtemp);
         tvHourlyTemp3 = findViewById(R.id.tv_hourly3rdtemp);
@@ -171,6 +177,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 if(Objects.equals(weatherResponse.current.dayornight, "N")){
                     if (weatherResponse.current.iconCode == 31){
                         lottieAnimationView.setAnimation(R.raw.clearnight);
+                    }else if(weatherResponse.current.iconCode == 32){
+                        lottieAnimationView.setAnimation(R.raw.clearnight);
+                    }else if(weatherResponse.current.iconCode == 33){
+                        lottieAnimationView.setAnimation(R.raw.clearnight);
+                    }
+                }else{
+                    if (weatherResponse.current.iconCode == 31){
+                        lottieAnimationView.setAnimation(R.raw.clear);
                     }
                 }
 
@@ -224,20 +238,31 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     tvForecastDay7.setText(day7);
                 }
 
-                tvPerc1Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(0)));
-                tvPerc2Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(1)));
-                tvPerc3Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(2)));
-                tvPerc4Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(3)));
-                tvHourlyTemp1.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(4)));
-                tvHourlyTemp2.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(1)));
-                tvHourlyTemp3.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(2)));
-                tvHourlyTemp4.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(3)));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h a"); // Only hour and AM/PM
+
+                // Correct DateTimeFormatter to parse the time including offset
+                DateTimeFormatter fullFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+
+                tvTime1.setText(formatTime(weatherResponse.hourly1day.validTimeLocal.get(0), fullFormatter, formatter));
+                tvTime2.setText(formatTime(weatherResponse.hourly1day.validTimeLocal.get(1), fullFormatter, formatter));
+                tvTime3.setText(formatTime(weatherResponse.hourly1day.validTimeLocal.get(2), fullFormatter, formatter));
+                tvTime4.setText(formatTime(weatherResponse.hourly1day.validTimeLocal.get(3), fullFormatter, formatter));
+
+
+                tvPerc1Rain.setText(weatherResponse.hourly1day.precipChance.get(0) +" %");
+                tvPerc2Rain.setText(weatherResponse.hourly1day.precipChance.get(1) +" %");
+                tvPerc3Rain.setText(weatherResponse.hourly1day.precipChance.get(2) +" %");
+                tvPerc4Rain.setText(weatherResponse.hourly1day.precipChance.get(3) +" %");
+                tvHourlyTemp1.setText(weatherResponse.hourly1day.temperature.get(0) +"°");
+                tvHourlyTemp2.setText(weatherResponse.hourly1day.temperature.get(1) +"°");
+                tvHourlyTemp3.setText(weatherResponse.hourly1day.temperature.get(2) +"°");
+                tvHourlyTemp4.setText(weatherResponse.hourly1day.temperature.get(3) +"°");
 
             } else {
                 tvTemp.setText("Error: Invalid response");
             }
         } catch (Exception e) {
-            tvNarrative.setText("Error parsing response");
+            tvNarrative.setText(e.toString());
         }
     }
 
@@ -251,5 +276,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    private String formatTime(String time, DateTimeFormatter fullFormatter, DateTimeFormatter formatter) {
+        OffsetDateTime dateTime = OffsetDateTime.parse(time, fullFormatter); // Parse using the full formatter
+        return dateTime.format(formatter); // Format to only show hour with AM/PM
     }
 }
