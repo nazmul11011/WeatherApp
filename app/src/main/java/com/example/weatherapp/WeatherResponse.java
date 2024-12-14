@@ -64,7 +64,7 @@ public class WeatherResponse {
         @SerializedName("temperature")
         public int temperature;
 
-        @SerializedName("cloudCoverPhrase")
+        @SerializedName("wxPhraseLong")
         public String cloudCoverPhrase;
         @SerializedName("dayOrNight")
         public String dayornight;

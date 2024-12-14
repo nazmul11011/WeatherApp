@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void fetchWeatherData(Location location) {
         String apiKey = "793db2b6128c4bc2bdb2b6128c0bc230"; // Replace with your actual API key
-        String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3-wx-observations-current;v2fcstdaily7s;v3-links" +
+        String url = "https://api.weather.com/v2/aggcommon/v3-location-point;v3-wx-observations-current;v2fcstdaily7s;v3-wx-forecast-hourly-1day;v3-links" +
                 "?par=samsung_widget&geocode=" + location.getLatitude() + "%2C" + location.getLongitude() +
                 "&language=en-us&units=m&format=json&apiKey=" + apiKey;
 
@@ -224,14 +224,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     tvForecastDay7.setText(day7);
                 }
 
-//                tvPerc1Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(0)));
-//                tvPerc2Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(1)));
-//                tvPerc3Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(2)));
-//                tvPerc4Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(3)));
-                tvHourlyTemp1.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(0)));
-//                tvHourlyTemp2.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(1)));
-//                tvHourlyTemp3.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(2)));
-//                tvHourlyTemp4.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(3)));
+                tvPerc1Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(0)));
+                tvPerc2Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(1)));
+                tvPerc3Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(2)));
+                tvPerc4Rain.setText(String.valueOf(weatherResponse.hourly1day.precipChance.get(3)));
+                tvHourlyTemp1.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(4)));
+                tvHourlyTemp2.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(1)));
+                tvHourlyTemp3.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(2)));
+                tvHourlyTemp4.setText(String.valueOf(weatherResponse.hourly1day.temperature.get(3)));
 
             } else {
                 tvTemp.setText("Error: Invalid response");
